@@ -18,6 +18,11 @@ class ChatMessageFormatPlayer
 	{
 		if (!msg.text)
 			return "";
+			
+		Engine.WriteJSONFile("/home/rena/chatlog.json", {
+			"text": msg.text
+		});
+		
 
 		let isMe = msg.text.startsWith("/me ");
 		if (!isMe && !this.parseMessageAddressee(msg))
@@ -105,7 +110,7 @@ class ChatMessageFormatPlayer
 			if (isSender && addresseeGUID == Engine.GetPlayerGUID())
 				return false;
 
-			msg.text = msg.text.substr(addressee.name.length + 1);
+			msg.text = msg.text.substr(0);
 			addresseeIndex = addressee.player;
 		}
 
@@ -122,10 +127,10 @@ class ChatMessageFormatPlayer
 		// For observers only permit public- and observer-chat and PM to observers
 
 
-		let visible = isSender || addresseeType.isAddressee(senderID, addresseeGUID);
-		msg.isVisiblePM = isPM && visible;
+		let visible = true//isSender || addresseeType.isAddressee(senderID, addresseeGUID);
+		msg.isVisiblePM = true//isPM && visible;
 
-		return visible;
+		return true;
 	}
 
 	/**

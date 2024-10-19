@@ -5,6 +5,6 @@ class ChatMessageFormatAutocivSelf
         if (!msg.text)
             return "";
 
-        return { "text": setStringTags(`System == ${msg.text}`, { "font": "sans-bold-stroke-13" }) };
+        return { "text": setStringTags(`System == ${msg.text}`, { "font": "sans-stroke-16" }) };
     }
 }

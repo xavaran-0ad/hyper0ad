@@ -61,8 +61,6 @@ class ChatAddressees
 			let playerID = g_PlayerAssignments[guid].player;
 
 			// Don't provide option for PM from observer to player
-			if (g_IsObserver && !isPlayerObserver(playerID))
-				continue;
 
 			let colorBox = isPlayerObserver(playerID) ? "" : colorizePlayernameHelper("■", playerID) + " ";
 

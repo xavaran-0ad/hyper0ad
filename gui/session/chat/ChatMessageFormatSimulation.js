@@ -9,9 +9,6 @@ ChatMessageFormatSimulation.attack = class
 {
 	parse(msg)
 	{
-		if (msg.player != g_ViewedPlayer)
-			return "";
-
 		let message = msg.targetIsDomesticAnimal ?
 			translate("%(icon)sYour livestock has been attacked by %(attacker)s!") :
 			translate("%(icon)sYou have been attacked by %(attacker)s!");
@@ -33,8 +30,6 @@ ChatMessageFormatSimulation.barter = class
 {
 	parse(msg)
 	{
-		if (!g_IsObserver || Engine.ConfigDB_GetValue("user", "gui.session.notifications.barter") != "true")
-			return "";
 
 		let amountGiven = {};
 		amountGiven[msg.resourceGiven] = msg.amountGiven;
@@ -58,14 +53,12 @@ ChatMessageFormatSimulation.diplomacy = class
 	{
 		let messageType;
 
-		if (g_IsObserver)
-			messageType = "observer";
-		else if (Engine.GetPlayerID() == msg.sourcePlayer)
+		if (Engine.GetPlayerID() == msg.sourcePlayer)
 			messageType = "active";
 		else if (Engine.GetPlayerID() == msg.targetPlayer)
 			messageType = "passive";
 		else
-			return "";
+			messageType = "observer";
 
 		return {
 			"text": sprintf(translate(this.strings[messageType][msg.status]), {
@@ -99,8 +92,6 @@ ChatMessageFormatSimulation.phase = class
 	parse(msg)
 	{
 		let notifyPhase = Engine.ConfigDB_GetValue("user", "gui.session.notifications.phase");
-		if (notifyPhase == "none" || msg.player != g_ViewedPlayer && !g_IsObserver && !g_Players[msg.player].isMutualAlly[g_ViewedPlayer])
-			return "";
 
 		let message = "";
 		if (notifyPhase == "all")
@@ -159,10 +150,7 @@ ChatMessageFormatSimulation.tribute = class
 			message = translate("%(player)s has sent you %(amounts)s.");
 		else if (msg.sourcePlayer == Engine.GetPlayerID())
 			message = translate("You have sent %(player2)s %(amounts)s.");
-		else if (Engine.ConfigDB_GetValue("user", "gui.session.notifications.tribute") == "true" &&
-		        (g_IsObserver || g_InitAttributes.settings.LockTeams &&
-		           g_Players[msg.sourcePlayer].isMutualAlly[Engine.GetPlayerID()] &&
-		           g_Players[msg.targetPlayer].isMutualAlly[Engine.GetPlayerID()]))
+		else
 			message = translate("%(player)s has sent %(player2)s %(amounts)s.");
 
 		return {

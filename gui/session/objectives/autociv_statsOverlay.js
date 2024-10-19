@@ -24,7 +24,7 @@ AutocivControls.StatsOverlay = class
         " Kil": state => state.enemyUnitsKilledTotal ?? 0,
     }
     widths = {} // Will be filled on the constructor
-    tickPeriod = 10
+    tickPeriod = 1
     textFont = "mono-stroke-10"
     configKey_visible = "autociv.session.statsOverlay.visible"
 
@@ -127,10 +127,6 @@ AutocivControls.StatsOverlay = class
                 return false
 
             state.playerNumber = index
-            if (g_IsObserver || !g_Players[g_ViewedPlayer] || index == g_ViewedPlayer)
-                return true
-            if (!playerStates[g_ViewedPlayer].hasSharedLos || !g_Players[g_ViewedPlayer].isMutualAlly[index])
-                return false
             return true
         })
 
