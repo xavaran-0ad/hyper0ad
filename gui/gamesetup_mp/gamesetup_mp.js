@@ -439,7 +439,7 @@ function startJoinFromLobby(playername, hostJID, password)
 
 	try
 	{
-		Engine.StartNetworkJoinLobby(playername + (g_UserRating ? " (" + g_UserRating + ") ⁂⁂⁂" : ""), hostJID, password);
+		Engine.StartNetworkJoinLobby(playername + (g_UserRating ? " (" + g_UserRating + ") PERSIA" : ""), hostJID, password);
 	}
 	catch (e)
 	{

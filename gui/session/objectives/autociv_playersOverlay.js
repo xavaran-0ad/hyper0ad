@@ -1,7 +1,7 @@
 AutocivControls.PlayersOverlay = class
 {
     autociv_playersOverlay = Engine.GetGUIObjectByName("autociv_playersOverlay")
-    textFont = "mono-stroke-10"
+    textFont = "sans-stroke-16"
     configKey_visible = "autociv.session.playersOverlay.visible"
     visible = Engine.ConfigDB_GetValue("user", this.configKey_visible) == "true"
     playerOfflineColor = "250 60 30 250"

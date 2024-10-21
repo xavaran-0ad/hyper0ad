@@ -205,6 +205,8 @@ GuiInterface.prototype.autociv_GetStatsOverlay = function ()
 
         const cmpPlayerStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
         const classCounts = cmpTechnologyManager?.GetClassCounts()
+        
+        //print(String(cmpPlayerStatisticsTracker?.unitsLost.total ?? 0));
 
         ret.players.push({
             "name": cmpIdentity.GetName(),
@@ -220,7 +222,9 @@ GuiInterface.prototype.autociv_GetStatsOverlay = function ()
             "classCounts_Cavalry": classCounts?.Cavalry ?? 0,
             "classCounts_Seige": (classCounts?.Siege ?? 0),
             "classCounts_Champion": (classCounts?.Champion ?? 0),
-            "enemyUnitsKilledTotal": cmpPlayerStatisticsTracker?.enemyUnitsKilled.total ?? 0
+            "enemyUnitsKilledTotal": cmpPlayerStatisticsTracker?.enemyUnitsKilled.total ?? 0,
+            "unitsLost": cmpPlayerStatisticsTracker?.unitsLost.total ?? 0,
+            "KD": (cmpPlayerStatisticsTracker?.enemyUnitsKilled.total ?? 0) / (cmpPlayerStatisticsTracker?.unitsLost.total ?? 0)
         });
     }
 

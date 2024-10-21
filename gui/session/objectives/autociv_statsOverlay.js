@@ -8,6 +8,7 @@ AutocivControls.StatsOverlay = class
         " #": state => `${state.playerNumber}`, // Player number
         " T": state => state.team != -1 ? `${state.team + 1}` : "", // Team number
     }
+
     stats = {
         " P": state => state.phase,
         " Pop": state => state.popCount,
@@ -21,7 +22,9 @@ AutocivControls.StatsOverlay = class
         "  Stone": state => Math.round(state.resourceCounts["stone"]),
         "  Metal": state => Math.round(state.resourceCounts["metal"]),
         " Tec": state => state.researchedTechsCount,
-        " Kil": state => state.enemyUnitsKilledTotal ?? 0,
+        " Kil": state => state.enemyUnitsKilledTotal,
+        " Lost": state => state.unitsLost ?? 0,
+        "   KD": state => Math.round((state.KD ?? 0) * 10)/10,
     }
     widths = {} // Will be filled on the constructor
     tickPeriod = 1

@@ -19,10 +19,9 @@ class ChatMessageFormatPlayer
 		if (!msg.text)
 			return "";
 			
-		Engine.WriteJSONFile("/home/rena/chatlog.json", {
-			"text": msg.text
-		});
+		let existing = Engine.ReadJSONFile("chatlog.json");
 		
+		print(msg.guid + " " +msg.text + "\n");
 
 		let isMe = msg.text.startsWith("/me ");
 		if (!isMe && !this.parseMessageAddressee(msg))
