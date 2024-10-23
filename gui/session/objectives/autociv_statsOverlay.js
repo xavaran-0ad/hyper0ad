@@ -146,6 +146,7 @@ AutocivControls.StatsOverlay = class
         const values = {}
         for (let stat of Object.keys(this.stats))
         {
+			//print("(" + stat + ")");
             let list = playerStates.map(this.stats[stat])
             values[stat] = {
                 "list": list,
@@ -153,6 +154,18 @@ AutocivControls.StatsOverlay = class
                 "max": this.maxIndex(list),
             }
         }
+        //if (this.stats[" Pop"] > 11){
+			//print("pop more than 11")
+			//addChatMessage({
+					//"type": "message",
+					//"guid": -1,
+					//"player": -1,
+					//"text": "pop is more than 11",
+					//"translate": true,
+					//"translateParameters": [],
+					//"parameters": {}
+				//});
+		//}
 
         const entries = playerStates.map((state, index) =>
         {
