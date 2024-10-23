@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry">
+  <Health>
+    <Max>50</Max>
+  </Health>
+  <Identity>
+    <VisibleClasses datatype="tokens">Ranged</VisibleClasses>
+    <GenericName>Ranged</GenericName>
+  </Identity>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>1</Hack>
+        <Pierce>1</Pierce>
+        <Crush>10</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>256x256/plus.png</MainTexture>
+        <MainTextureMask>256x256/plus_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <Turretable/>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/skirmish
+    </Formations>
+  </UnitAI>
+</Entity>
